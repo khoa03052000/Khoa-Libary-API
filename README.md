@@ -141,7 +141,7 @@ HTTP/1.1 200 OK
       "created_at": "2020-07-271T13:51:32",
       "updated_at": "",
       "delete_at": "",
-      "is_expired": True,
+      "is_expired": True
     },
     {
       "id": "2",
@@ -152,7 +152,7 @@ HTTP/1.1 200 OK
       "created_at": "2020-08-1T14:00:00",
       "updated_at": "",
       "delete_at": "",
-      "is_expired": True,
+      "is_expired": True
     },
   ],
   "meta": {
