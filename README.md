@@ -15,7 +15,7 @@
 - `409` - Conflict. Duplicate data or invalid data state would occur.
 ## Accessing the API
 ### Books
-#### Books - List
+##### Books - List
 - List all book
 
 
@@ -23,15 +23,15 @@
 ```
 api/v1/books/
 ```
-#### Header
+##### Header
 
 Field | Type | Description
 ---------|----------|---------
 Accept-Language | String | User language
 
-#### Parameters
+##### Parameters
 No parametes
-#### Success-Response
+##### Success-Response
 ```json
 HTTP/1.1 200 OK
 {
@@ -84,16 +84,16 @@ HTTP/1.1 200 OK
 ```
 /v1/books/:[field]
 ```
-#### Header
+##### Header
 
 Field | Type | Description
 ---------|----------|---------
  Accept-Language | String | User language
-#### Parameters
+##### Parameters
 Field | Type | Description
 ---------|----------|---------
  id | String | alphabets and numbers
-#### Success-Response
+##### Success-Response
 ```json
 HTTP/1.1 200 OK
 {
@@ -120,14 +120,14 @@ HTTP/1.1 200 OK
 ```
 api/v1/borrows/bill
 ```
-#### Header
+##### Header
 Field | Type | Description
 ---------|----------|---------
  Accept-Language | String | User language
 
-#### Parameters
+##### Parameters
 No parametes
-#### Success-Response
+##### Success-Response
 ```json
 HTTP/1.1 200 OK
 {
@@ -171,7 +171,7 @@ HTTP/1.1 200 OK
   }
 }
 ```
-### Borrows - Retrieve
+#### Borrows - Retrieve
 
 - Retrieve a single borrow bill
 
@@ -180,16 +180,16 @@ HTTP/1.1 200 OK
 ```
 /v1/borrows/bill/:id
 ```
-#### Header
+##### Header
 
 Field | Type | Description
 ---------|----------|---------
  Accept-Language | String | User language
-#### Parameters
+##### Parameters
 Field | Type | Description
 ---------|----------|---------
  id | String | alphabets and numbers
-#### Success-Response
+##### Success-Response
 ```json
 HTTP/1.1 200 OK
 {
@@ -207,7 +207,7 @@ HTTP/1.1 200 OK
     },
 }
 ```
-### Borrow - Create
+#### Borrow - Create
 - Create new borrower
 
 
@@ -215,7 +215,7 @@ HTTP/1.1 200 OK
 ```
 /v1/borrows
 ```
-#### Header
+##### Header
 
 Field | Type | Description
 ---------|----------|---------
@@ -233,7 +233,7 @@ Field | Type | Description
  book_id | String | alphabets and numbers
  day_borrow | String | date time (YYYY-MM-DD)
  day_return | String | date -time (YYYY-MM-DD)
-#### Success-Response
+##### Success-Response
 ```json
 HTTP/1.1 201 OK
 {
@@ -243,7 +243,7 @@ HTTP/1.1 201 OK
   }
 }
 ```
-#### Error-Response
+###3# Error-Response
 ```json
  HTTP/1.1 422
 {
@@ -274,13 +274,13 @@ Field | Type | Description
  Host | String | <calculated when request is sent>
  Accept-Encoding | String | gzip, deflate, br
  Connection | String | keep-alive
-#### Parameters
+##### Parameters
 Field | Type | Description
 ---------|----------|---------
 name | String | User language, Lower case, no special characters
 password | String | passoword length min > 8 characters
 staff_id | String | 
-#### Success-Response
+##### Success-Response
 ```json
 HTTP/1.1 201 OK
 {
@@ -290,7 +290,7 @@ HTTP/1.1 201 OK
   }
 }
 ```
-#### Error-Response
+##### Error-Response
 ```json
  HTTP/1.1 409
 {
@@ -308,7 +308,8 @@ HTTP/1.1 201 OK
 `POST`
 ```
 /v1/accounts/readers
-#### Header
+```
+##### Header
 Field | Type | Description
 ---------|----------|---------
 Cookie | String | <calculated when request is sent>
@@ -318,13 +319,13 @@ Content-Length | String | <calculated when request is sent>
 Host | String | <calculated when request is sent>
 Accept-Encoding | String | gzip, deflate, br
 Connection | String | keep-alive
-#### Parameters
+##### Parameters
 Field | Type | Description
 ---------|----------|---------
 name | String | User language, Lower case, no special characters
 password | String | passoword length min > 8 characters
 readers_id | String | 
-#### Success-Response
+##### Success-Response
 ```json
 HTTP/1.1 201 OK
 {
@@ -334,7 +335,7 @@ HTTP/1.1 201 OK
   }
 }
 ```
-#### Error-Response
+##### Error-Response
 ```json
  HTTP/1.1 409
 {
