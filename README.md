@@ -18,7 +18,7 @@
 #### Books - List
 - List all book
 
-n 
+
 `GET`
 ```
 api/v1/books/
@@ -27,7 +27,7 @@ api/v1/books/
 
 Field | Type | Description
 ---------|----------|---------
- Accept-Language | String | User language
+Accept-Language | String | User language
 
 #### Parameters
 No parametes
@@ -78,7 +78,8 @@ HTTP/1.1 200 OK
 ```
 #### Books - Retrieve
 
-Retrieve a single book
+- Retrieve a single book
+
 
 `GET`
 ```
@@ -114,6 +115,7 @@ HTTP/1.1 200 OK
 ### Borrows
 #### Borrows - List
 - List all borrow bill
+
 
 `GET`
 ```
@@ -175,6 +177,7 @@ HTTP/1.1 200 OK
 
 - Retrieve a single borrow bill
 
+
 `GET`
 ```
 /v1/borrows/bill/:id
@@ -208,6 +211,8 @@ HTTP/1.1 200 OK
 ```
 ### Borrow - Create
 - Create new borrower
+
+
 `POST`
 ```
 /v1/borrows
@@ -254,6 +259,8 @@ HTTP/1.1 201 OK
 ### Accounts
 #### Accounts-Staff-Create
 - Create new staff account
+ 
+ 
 `POST`
 ```
 /v1/accounts/staff
@@ -298,6 +305,8 @@ HTTP/1.1 201 OK
 ```
 #### Accounts-Readers-Create
 - Create new readers account
+ 
+ 
 `POST`
 ```
 /v1/accounts/readers
