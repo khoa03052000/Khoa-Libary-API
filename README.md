@@ -1,12 +1,27 @@
 # Book API document - Khoalibary.com
-## Books
-### Books-Book-List
-List all book
 
+## Resource
+### The main entities/resources served by the API are
+- Books
+- Borrow
+### Each resource managed by implementing the two main HTTP methods
+- `GET` for getting all elements or searching if query specified or getting specified element if the id specified.
+- `POST` for adding new element to the collection.
+### HTTP status codes
+- `200` - Success.
+- `201` - Created. Returned on successful creation of a new resource. Include a 'Location' header with a link to the newly-created resource.
+- `400` - Bad request. Data issues such as invalid JSON, etc.
+- `404` - Not found. Resource not found on GET.
+- `409` - Conflict. Duplicate data or invalid data state would occur.
+## Accessing the API
+### Books
+#### Books - List
+- List all book
 
+n 
 `GET`
 ```
-/v1/books/
+api/v1/books/
 ```
 #### Header
 
@@ -20,36 +35,38 @@ No parametes
 ```json
 HTTP/1.1 200 OK
 {
-  "data": [
+  "data":
     {
-      "object": "Post",
       "id": "1",
       "name": "Python Learn The Hard way",
       "author": "Zed Shaw",
       "category": "education",
       "shelve_code": "2A1",
-      "department_id": "Hà Nội",
-      "is_borrowed": "True"
+      "department_id": "HN",
+      "created_at": "2020-03-31T13:51:32",
+      "updated_at": "2020-03-31T13:51:32",
+      "delete_at": ""
     },
     {
-      "object": "Post",
       "id": "2",
       "name": "Python Crash Course: A Hands-On",
       "author": "Eric Matthes",
       "category": "education",
       "shelve_code": "2B2",
       "department_id": "Hồ Chí Minh",
-      "is_borrowed": "False"
+      "created_at": "2020-03-13T14:12:32",
+      "updated_at": "",
+      "delete_at": ""
     },
     ...
   ],
   "meta": {
     "include": [
-      "posts"
+      "books"
     ],
     "custom": [],
     "pagination": {
-      "total": 7,
+      "total": 9,
       "count": 7,
       "per_page": 10,
       "current_page": 1,
@@ -59,13 +76,13 @@ HTTP/1.1 200 OK
   }
 }
 ```
-### Books-Book-Retrieve
+#### Books - Retrieve
 
 Retrieve a single book
 
 `GET`
 ```
-/v1/books/:id
+/v1/books/:[field]
 ```
 #### Header
 
@@ -76,42 +93,31 @@ Field | Type | Description
 Field | Type | Description
 ---------|----------|---------
  id | String | alphabets and numbers
- name | String | User language
- author | String | User language
- category | String | User language
- shelve_code | String | alphabets and numbers
- departmen_id | String | alphabets and numbers
- is_borrowed | Boolean | True or False
 #### Success-Response
 ```json
 HTTP/1.1 200 OK
 {
-  "data":{
-    "object": "Post",
-    "id": "1",
-    "name": "Python Learn The Hard way",
-    "author": "Zed Shaw",
-    "category": "education",
-    "shelve_code": "2A1",
-    "department_id": "Hà Nội",
-    "is_borrowed": "True"
-    },
-  "meta": {
-    "include": [
-      "books"
-    ],
-    "custom": []
-  }
+   "data":{
+      "id":"1",
+      "name":"Python Learn The Hard way",
+      "author":"Zed Shaw",
+      "category":"education",
+      "shelve_code":"2A1",
+      "department_id":"HN",
+      "created_at":"2020-03-31T13:51:32",
+      "updated_at":"",
+      "delete_at":""
+   }
 }
 ```
 
-## Borrows
-### Borrow-Borrwer-List
-List Borrower
+### Borrows
+#### Borrows - List
+- List all borrow bill
 
 `GET`
 ```
-/v1/borrows/name
+api/v1/borrows/bill
 ```
 #### Header
 Field | Type | Description
@@ -124,36 +130,38 @@ No parametes
 ```json
 HTTP/1.1 200 OK
 {
-  "data": [
+  "data":
     {
-      "object": "Post",
       "id": "1",
-      "name": "Khoa",
-      "book_id": "1",
-      "accounts_id": "gcd0705",
-      "day_borrow": "2020-03-19T16:46:33.000000Z",
-      "day_return": "2020-03-31T14:07:46.000000Z",
-      "is_expired": "True"
+      "books_id": "1",
+      "accounts_id": "1",
+      "day_borrow": "2020-07-27",
+      "day_return": "2020-07-31",
+      "created_at": "2020-07-271T13:51:32",
+      "updated_at": "",
+      "delete_at": "",
+      "is_expired: True
     },
     {
-      "object": "Post",
       "id": "2",
-      "name": "Kim Huong",
-      "book_id": "2",
-      "accounts_id": "gcd9109",
-      "day-borrow": "2020-03-20T17:02:13.000000Z",
-      "day-return": "2020-04-1T8:07:23.000000Z",
-      "is_expired": "False"
+      "books_id": "2",
+      "accounts_id": "2",
+      "day_borrow": "2020-08-1",
+      "day_return": "2020-07-21",
+      "created_at": "2020-08-1T14:00:00",
+      "updated_at": "",
+      "delete_at": "",
+      "is_expired: True
     },
     ...
   ],
   "meta": {
     "include": [
-      "borrows"
+      "books"
     ],
     "custom": [],
     "pagination": {
-      "total": 7,
+      "total": 9,
       "count": 7,
       "per_page": 10,
       "current_page": 1,
@@ -163,13 +171,13 @@ HTTP/1.1 200 OK
   }
 }
 ```
-### Borrows-Borrower-Retrieve
+### Borrows - Retrieve
 
-Retrieve a single borrower
+- Retrieve a single borrow bill
 
 `GET`
 ```
-/v1/borrows/name/:id
+/v1/borrows/bill/:id
 ```
 #### Header
 
@@ -180,106 +188,77 @@ Field | Type | Description
 Field | Type | Description
 ---------|----------|---------
  id | String | alphabets and numbers
- name | String | User language
- book_id | String | alphabets and numbers
- accounts_id | String | alphabets and numbers
- day_borrow | Datetime | YYYY-MM-DD
- day_return | Datetime | YYYY-MM-DD
- is_expired | Boolean | True or False
 #### Success-Response
 ```json
 HTTP/1.1 200 OK
 {
-  "data":{
-    "object": "Post",
-    "id": "1",
-    "name": "Khoa",
-    "book_id": "1",
-    "accounts_id": "gcd0705",
-    "day_borrow": "2020-03-19T16:46:33.000000Z",
-    "day_return": "2020-03-31T14:07:46.000000Z",
-    "is_expired": "True"
+  "data":
+    {
+      "id": "1",
+      "books_id": "1",
+      "accounts_id": "1",
+      "day_borrow": "2020-07-27",
+      "day_return": "2020-07-31",
+      "created_at": "2020-07-271T13:51:32",
+      "updated_at": "",
+      "delete_at": "",
+      "is_expired: True
     },
-  "meta": {
-    "include": [
-      "borrow"
-    ],
-    "custom": []
+}
+```
+### Borrow - Create
+- Create new borrower
+`POST`
+```
+/v1/borrows
+```
+#### Header
+
+Field | Type | Description
+---------|----------|---------
+ Cookie | String | <calculated when request is sent>
+ Token | String | <calculated when request is sent>
+ Content-Type | String | application/json
+ Content-Length | String | <calculated when request is sent>
+ Host | String | <calculated when request is sent>
+ Accept-Encoding | String | gzip, deflate, br
+ Connection | String | keep-alive
+##### Parameters
+Field | Type | Description
+---------|----------|---------
+ accounts_id | String | User language
+ book_id | String | alphabets and numbers
+ day_borrow | String | date time (YYYY-MM-DD)
+ day_return | String | date -time (YYYY-MM-DD)
+#### Success-Response
+```json
+HTTP/1.1 201 OK
+{
+  "results": {
+    "id": "1",
+    "created_at": "2020-07-271T13:51:32",
   }
 }
 ```
-### Borrow-Brrower-Create
-Create new borrower
-
-
-`POST`
-```
-/v1/borrows/new-borrower?[field]=[values]
-```
-Example: 
-```
-/v1/borrows/new-borrower?name=Khoa
-```
-#### Header
-
-Field | Type | Description
----------|----------|---------
- Cookie | String | <calculated when request is sent>
- Token | String | <calculated when request is sent>
- Content-Type | String | application/json
- Content-Length | String | <calculated when request is sent>
- Host | String | <calculated when request is sent>
- Accept-Encoding | String | gzip, deflate, br
- Connection | String | keep-alive
-#### Parameters
-Field | Type | Description
----------|----------|---------
- name | String | User language
- book_id | String | alphabets and numbers
- accounts_id | String | alphabets and numbers
-#### Success-Response
+#### Error-Response
 ```json
-HTTP/1.1 200 OK
+ HTTP/1.1 422
 {
-    "args": {
-        "name": "Khoa Huynh",
-        "book_id": "1",
-        "accounts_id": "gcd0705"
-    },
-    "data": {
-        "method": "POST"
-    },
-    "headers": {
-        "x-forwarded-proto": "https",
-        "x-forwarded-port": "443",
-        "host": "khoalibary.com",
-        "x-amzn-trace-id": "Root=1-5f231a35-3d310456baf22caa7ff39fb8",
-        "content-length": "21",
-        "content-type": "application/json",
-        "web-token": "96e0a497-3f9f-49ba-8ee4-3ba6bc9a7b01",
-        "accept-encoding": "gzip, deflate, br",
-        "cookie": "sails.sid=s%3AQq7Ohz-O6U3Tb86u6_kGH6Tga41MbwrE.A2Uf4pX7cKxM"
-    },
-    "json": {
-        "method": "POST"
-    },
-    "url": "https://khoalibary.com/v1/borrows/new-borrower?name=Khoa%20Huynh&book_id=1&accounts_id=gcd0705"
+  "errors": [
+    {
+      "message": "account_id is duplicate in database"
+    }
+  ]
 }
 ```
-## Accounts
-### Accounts-Staff-Create
-Create new staff account
-
-
+### Accounts
+#### Accounts-Staff-Create
+- Create new staff account
 `POST`
 ```
-/v1/accounts/staff?[field]=[values]
+/v1/accounts/staff
 ```
-Example: 
-```
-/v1/accounts/staff?name=gcd0705
-```
-#### Header
+##### Header
 
 Field | Type | Description
 ---------|----------|---------
@@ -293,93 +272,69 @@ Field | Type | Description
 #### Parameters
 Field | Type | Description
 ---------|----------|---------
-  name | String | User language, Lower case, no special characters
-  password | String | passoword length min > 8 characters
-  staff_id | String | 
+name | String | User language, Lower case, no special characters
+password | String | passoword length min > 8 characters
+staff_id | String | 
 #### Success-Response
 ```json
-HTTP/1.1 200 OK
+HTTP/1.1 201 OK
 {
-    "args": {
-        "name": "khoadautay",
-        "password": "khoa0305",
-        "accounts_id": "gcd0705",
-    },
-    "data": {
-        "method": "POST"
-    },
-    "headers": {
-        "x-forwarded-proto": "https",
-        "x-forwarded-port": "443",
-        "host": "khoalibary.com",
-        "x-amzn-trace-id": "Root=1-5f231a35-3d310456baf22caa7ff39fb8",
-        "content-length": "21",
-        "content-type": "application/json",
-        "web-token": "96e0a497-3f9f-49ba-8ee4-3ba6bc9a7b01",
-        "accept-encoding": "gzip, deflate, br",
-        "cookie": "sails.sid=s%3AQq7Ohz-O6U3Tb86u6_kGH6Tga41MbwrE.A2Uf4pX7cKxM"
-    },
-    "json": {
-        "method": "POST"
-    },
-    "url": "https://khoalibary.com/v1/accounts/staff?name=khoadautay&password=khoa0305&accounts_id=gcd0705"
+  "results": {
+    "accounts_id": "1",
+    "created_at": "2020-07-271T13:51:32",
+  }
 }
 ```
-### Accounts-Readers-Create
-Create new reader account
-
-
+#### Error-Response
+```json
+ HTTP/1.1 409
+{
+  "errors": [
+    {
+      "message": "staffs_id is duplicate in database"
+    }
+  ]
+}
+```
+#### Accounts-Readers-Create
+- Create new readers account
 `POST`
 ```
-/v1/accounts/readers?[field]=[values]
-```
-Example: 
-```
-/v1/accounts/readers?name=gcd0705
-```
+/v1/accounts/readers
 #### Header
-
 Field | Type | Description
 ---------|----------|---------
- Cookie | String | <calculated when request is sent>
- Token | String | <calculated when request is sent>
- Content-Type | String | application/json
- Content-Length | String | <calculated when request is sent>
- Host | String | <calculated when request is sent>
- Accept-Encoding | String | gzip, deflate, br
- Connection | String | keep-alive
+Cookie | String | <calculated when request is sent>
+Token | String | <calculated when request is sent>
+Content-Type | String | application/json
+Content-Length | String | <calculated when request is sent>
+Host | String | <calculated when request is sent>
+Accept-Encoding | String | gzip, deflate, br
+Connection | String | keep-alive
 #### Parameters
 Field | Type | Description
 ---------|----------|---------
-  name | String | User language, Lower case, no special characters
-  password | String | passoword length min > 8 characters
-  readers_id | String | 
+name | String | User language, Lower case, no special characters
+password | String | passoword length min > 8 characters
+readers_id | String | 
 #### Success-Response
 ```json
-HTTP/1.1 200 OK
+HTTP/1.1 201 OK
 {
-    "args": {
-        "name": "readerkhoa",
-        "password": "khoa2000",
-        "accounts_id": "RHD7890",
-    },
-    "data": {
-        "method": "POST"
-    },
-    "headers": {
-        "x-forwarded-proto": "https",
-        "x-forwarded-port": "443",
-        "host": "khoalibary.com",
-        "x-amzn-trace-id": "Root=1-5f231a35-3d310456baf22caa7ff39fb8",
-        "content-length": "21",
-        "content-type": "application/json",
-        "web-token": "96e0a497-3f9f-49ba-8ee4-3ba6bc9a7b01",
-        "accept-encoding": "gzip, deflate, br",
-        "cookie": "sails.sid=s%3AQq7Ohz-O6U3Tb86u6_kGH6Tga41MbwrE.A2Uf4pX7cKxM"
-    },
-    "json": {
-        "method": "POST"
-    },
-    "url": "https://khoalibary.com/v1/accounts/readers?name=readerkhoa&password=khoa2000&accounts_id=RHD7890"
+  "results": {
+    "accounts_id": "2",
+    "created_at": "2020-07-271T13:51:32",
+  }
+}
+```
+#### Error-Response
+```json
+ HTTP/1.1 409
+{
+  "errors": [
+    {
+      "message": "readers_id is duplicate in database"
+    }
+  ]
 }
 ```
