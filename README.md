@@ -35,7 +35,7 @@ No parametes
 ```json
 HTTP/1.1 200 OK
 {
-  "data":
+  "data":[
     {
       "id": "1",
       "name": "Python Learn The Hard way",
@@ -132,7 +132,7 @@ No parametes
 ```json
 HTTP/1.1 200 OK
 {
-  "data":
+  "data":[
     {
       "id": "1",
       "books_id": "1",
